@@ -35,9 +35,9 @@
 
 ---
 
-![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/curl8090.png)
-![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/databases.png)
-![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/databases1.png)
-![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/dockerpsa.png)
+![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/screenshots/curl8090.png)
+![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/screenshots/databases.png)
+![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/screenshots/databases1.png)
+![alt text](https://github.com/DeluxWebSite/shvirtd-example-python/blob/main/screenshots/dockerpsa.png)
 
 ---
