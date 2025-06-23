@@ -11,8 +11,8 @@ from typing import Optional
 # Считываем конфигурацию БД из переменных окружения
 db_host = os.environ.get('DB_HOST', '127.0.0.1')
 db_user = os.environ.get('DB_USER', 'app')
-db_password = os.environ.get('DB_PASSWORD', 'very_strong')
-db_name = os.environ.get('DB_NAME', 'example')
+db_password = os.environ.get('DB_PASSWORD', 'QwErTy1234')
+db_name = os.environ.get('DB_NAME', 'virtd')
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -34,9 +34,9 @@ async def lifespan(app: FastAPI):
             cursor.close()
     except mysql.connector.Error as err:
         print(f"Ошибка при подключении к БД или создании таблицы: {err}")
-    
+
     yield
-    
+
     # Код, который выполнится при остановке приложения
     print("Приложение останавливается.")
 
@@ -124,7 +124,7 @@ def get_requests():
             cursor.execute(query)
             records = cursor.fetchall()
             cursor.close()
-            
+
             # Преобразуем записи в читабельный формат
             result = []
             for record in records:
@@ -133,7 +133,7 @@ def get_requests():
                     "request_date": record[1].strftime("%Y-%m-%d %H:%M:%S") if record[1] else None,
                     "request_ip": record[2]
                 })
-            
+
             return {
                 "total_records": len(result),
                 "records": result

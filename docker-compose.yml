@@ -3,7 +3,7 @@ include:
 
 services:
   db:
-    image: mysql:8
+    image: mysql:latest
     restart: on-failure
     env_file:
       - .env
@@ -22,11 +22,13 @@ services:
     environment:
       - DB_HOST=db
       - DB_TABLE=requests
-      - DB_USER=test_user
-      - DB_NAME=test_db
-      - DB_PASSWORD=test_password
+      - DB_USER=app
+      - DB_NAME=virtd
+      - DB_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
       - db
+    ports:
+      - 5000:5000
     networks:
       backend:
         ipv4_address: 172.20.0.5
