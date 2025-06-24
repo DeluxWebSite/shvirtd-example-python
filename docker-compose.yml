@@ -5,10 +5,18 @@ services:
   db:
     image: mysql:latest
     restart: on-failure
-    env_file:
-      - .env
+    env_file: .env
+    environment:
+      - TZ=Europe/Moscow
+      - MYSQL_ROOT_HOST="%"
+      - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER:${MYSQL_USER}
+      - MYSQL_PASSWORD:${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE:${MYSQL_DATABASE}
     volumes:
-      - /var/lib/docker/volumes/db_mysql/_data:/var/lib/mysql
+      - ./mysql/my.conf:/etc/mysql/my.cnf:ro
+      - mysql_data:/var/lib/mysql
     ports:
       - 3306:3306
     networks:
@@ -19,12 +27,13 @@ services:
     build:
       dockerfile: Dockerfile.python
     restart: on-failure
-    environment:
+    env_file: .env
+    environment: # блок переменных
+      - TZ=Europe/Moscow # установка часового пояса МСК
       - DB_HOST=db
-      - DB_TABLE=requests
       - DB_USER=app
+      - DB_PASSWORD:${MYSQL_PASSWORD}
       - DB_NAME=virtd
-      - DB_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
       - db
     ports:
@@ -32,6 +41,9 @@ services:
     networks:
       backend:
         ipv4_address: 172.20.0.5
+
+volumes:
+  mysql_data: {}
 
 networks:
   backend:
